@@ -1,11 +1,11 @@
 #whoshere.js
 
 
-##A JavaScript Utility for retrieving User/Browser Information
+##A JavaScript Utility for retrieving User/Browser/Host Information
 
 ###What's it do?
 
-Rather than writing a bunch of custom functions to get location, IP address, browser information, host information, and JavaScript compliances, ypu can call `whoshere.getInfo()` and get all that good stuff in one fell swoop.
+Rather than writing a bunch of custom functions to get location, IP address, browser, host, and JavaScript compliance information, you can call `whoshere.getInfo()` and get all that good stuff in one fell swoop.
 
 ###That sound simple.
 
@@ -19,17 +19,17 @@ None!
 
 `<script src='whoshere.js'></script>;`
 
-1. Instantiate the instance: `var whoIsHere = new whoshere();`
+1. Instantiate the instance: `var whoIsHere = new whoshere( callback );`
 
-2. Call the `getInfo` method: `whoIsHere.getInfo( callback );`
+2. Call the `getInfo` method: `whoIsHere.getInfo();`
 
 ###What's the callback for?
 
 Great question. Because much of the `whoshere` plugin relies on asynchronous processes, you must provide a callback so the browser knows what to do with the information once it becomes available. The demo has an example of a custom callback.
 
-###What's asynchronous? 
+###What's asynchronous JavaScript? 
 
-Hmm, well. Rather than rehash whats already been said a billion times, and much better than I could put it, here's a couple articles:
+Hmm, well. Rather than rehash whats already been said a billion times, here's a couple articles that explain the concept extremely well:
 
 1. [MDN](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/Synchronous_and_Asynchronous_Requests)
 
