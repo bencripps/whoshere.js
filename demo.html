@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+
+<head>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<meta charset="utf-8">
+
+<title>whoshere.js - a small utility for getting user and browser info</title>
+
+<meta name="description" content="native plugin for user/browser info">
+
+<meta name="author" content="benjamin cripps">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+
+<!--[if lt IE 9]>
+<script src="//cdn.jsdelivr.net/html5shiv/3.7.2/html5shiv.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+</head>
+
+<body>
+
+    <div class="container">
+
+    	<h1 class='text-center'>Who's Here JavaScript Utility</h1>
+
+    	<h2 class='text-center' id='loading'>Loading...</h2>
+
+    	<div class="row" id='resultCont' style="display: none;">
+
+    		<label class="form-control" >Result:</label>
+
+    		<ul id="result">
+
+    			<li></li>
+    			<li></li>
+    			<li></li>
+    			<li></li>
+    			<li></li>
+    			<li></li>
+    			<li></li>
+    			<li></li>
+    			<li></li>
+    			<li></li>
+    			<li></li>
+    			<li></li>
+    			<li></li>
+
+    		</ul>
+
+    	</div>
+
+    </div>
+
+
+</body>
+
+<script type="text/javascript" src="whoshere.js"></script>
+<script type="text/javascript">
+window.onload = function() {
+
+	//because whoshere is performing async requests, you will need to add a callback function for when
+	//the async processes finish. This can be any function. 1 argument (response) is available. If no callback is given,
+	//the function will run, and return no results. 
+	var customOnLoad = function( response ) { 
+
+			var ul = document.getElementById('result');
+
+			ul.children[0].innerHTML = '<label>Platform </label> ' + response.platform;
+			ul.children[1].innerHTML = '<label>Language </label> ' + response.lang;
+			ul.children[2].innerHTML = '<label>Online? </label> ' + response.onLine;
+			ul.children[3].innerHTML = '<label>Current Location </label>' + 
+									   '<ul><li><label>Latitude: </label> ' + response.currentLocation.coords.latitude + '</li></ul>' +
+									   '<ul><li><label>Longitude: </label> ' + response.currentLocation.coords.longitude + '</li></ul>' + 
+									   '<ul><li><label>Accuracy: </label> ' + response.currentLocation.coords.accuracy + '%</li></ul>'
+			ul.children[4].innerHTML = '<label>Do Not Track? </label> ' + response.doNotTrack;
+			ul.children[5].innerHTML = '<label>Application Info </label> ' + response.appVersion;
+			ul.children[6].innerHTML = '<label>Window Height </label> ' + response.winHeight;
+			ul.children[7].innerHTML = '<label>Window Width </label> ' + response.winWidth;
+			ul.children[8].innerHTML = '<label>Location URL </label> ' + response.platform;
+			ul.children[9].innerHTML = '<label>IP info </label> ' + response.ipObject.ip;
+									 
+			ul.children[10].innerHTML = '<label>Date </label> ' + response.date;
+			ul.children[11].innerHTML = '<label>Time </label> ' + response.time;
+			ul.children[12].innerHTML = '<label>Promises </label> ' + response.promise;
+
+			document.getElementById('resultCont').style.display = 'block';
+
+			document.getElementById('loading').style.display = 'none';
+
+		},
+
+		//define the instance of whoshere 
+		whosIsHere = new whoshere( customOnLoad ),
+
+		//initiate the getInfo function 
+    	info = whosIsHere.getInfo();
+
+}
+</script>
+
+</html>
